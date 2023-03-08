@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+artifact
+logs
+Bike Share Prediction.csv
