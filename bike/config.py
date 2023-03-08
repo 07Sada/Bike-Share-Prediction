@@ -13,3 +13,7 @@ class EnvironmentVariable():
 env_var = EnvironmentVariable()
 
 mongo_client = pymongo.MongoClient(env_var.mongo_db_url)
+
+TARGET_COLUMN = "cnt"
+
+UNWANTED_COLUMNS = ['instant', 'dteday', 'mnth', 'hr', 'holiday','workingday', 'weathersit', 'temp', 'hum']
