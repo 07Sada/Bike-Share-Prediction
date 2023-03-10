@@ -119,8 +119,9 @@ class DataTransformation:
 
             #transforming input features
             input_feature_train_arr = transformation_pipleine.transform(input_feature_train_df)
+            logging.info(f"type of input feature train_arr: [{type(input_feature_train_arr)}]")
             input_feature_test_arr = transformation_pipleine.transform(input_feature_test_df)
-
+            
             #target encoder
             train_arr = np.c_[input_feature_train_arr, target_feature_train_df.values ]
             test_arr = np.c_[input_feature_test_arr, target_feature_test_df.values]
