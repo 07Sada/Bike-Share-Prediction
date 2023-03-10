@@ -4,6 +4,7 @@ from bike.exception import BikeException
 import pandas as pd 
 import numpy as np 
 from bike.config import mongo_client
+from typing import Optional,List
 import yaml
 import dill 
 
@@ -42,3 +43,43 @@ def write_yaml_file(file_path,data:dict):
             yaml.dump(data,file_writer)
     except Exception as e: 
         raise BikeException(e, sys)
+
+def save_numpy_array_data(file_path: str, array: np.array):
+    """
+    Save numpy array data to file
+    file_path: str location of file to save
+    array: np.array data to save
+    """
+    try:
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path, "wb") as file_obj:
+            np.save(file_obj, array)
+    except Exception as e:
+        raise BikeException(e, sys)from e
+
+def save_object(file_path: str, obj: object) -> None:
+    try:
+        logging.info("Entered the save_object method of utils")
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, "wb") as file_obj:
+            dill.dump(obj, file_obj)
+        logging.info("Exited the save_object method of utils")
+    except Exception as e:
+        raise BikeException(e, sys)from e
+
+def remove_outlier_IQR(df):
+    try:
+        # Calculate the first quartile of the data
+        Q1 = df.quantile(0.25)
+        # Calculate the third quartile of the data
+        Q3 = df.quantile(0.75)
+        # Calculate the interquartile range
+        IQR = Q3 - Q1
+        # Create a new DataFrame that contains only rows where the values are not outliers
+        df1 = df[~((df < (Q1 - 1.5 * IQR)) | (df > (Q3 + 1.5 * IQR)))]
+        # Return the new DataFrame
+        return df1
+    except Exception as e:
+        raise BikeException(e, sys)from e
+

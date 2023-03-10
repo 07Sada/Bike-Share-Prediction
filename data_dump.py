@@ -10,7 +10,7 @@ COLLECTION_NAME ='bike'
 if __name__ == '__main__':
     df = pd.read_csv(DATA_FILE_PATH)
     print(f"Data Loaded successfully")
-    print(f"Shape of the dataset: {df.Shape}")
+    print(f"Shape of the dataset: {df.shape}")
 
     # converting dataframe to json format so that we can dump the record in mongo db
     df.reset_index(drop=True, inplace=True)

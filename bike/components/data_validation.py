@@ -34,8 +34,6 @@ class DataValidation:
         return pandas dataframe
         """
         try:
-            logging.info(f"Dropping unwanted colum: {UNWANTED_COLUMNS}")
-            logging.info(f"Columns in dataset before dropping {df.columns}")
             df = df.drop(columns=UNWANTED_COLUMNS, axis=1)
             # logging.info(f"Unwanted columns dropped, remaining columns: {df.columns.to_list()}")
             
