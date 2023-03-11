@@ -46,9 +46,7 @@ class DataTransformation:
 
         # Loop through the resulting set of indices
         if len(result)>0:
-            for i in range(0, len(result), 1):
-                # Drop the row at the current index from the df DataFrame
-                df.drop(i, inplace=True)
+            df.drop(result, inplace=True)
             return df, result
         else:
             return df,result
@@ -58,7 +56,7 @@ class DataTransformation:
         try:
             # Define the pipeline for one-hot encoding
             one_hot_pipeline = Pipeline([
-                ('one_hot', OneHotEncoder(sparse=False, handle_unknown='ignore'))])
+                ('one_hot', OneHotEncoder(sparse_output=False, handle_unknown='ignore'))])
 
             # Define the pipeline for standard scaling
             standard_pipeline = Pipeline([
@@ -67,10 +65,10 @@ class DataTransformation:
             # Define the column transformer to apply the pipelines to the appropriate columns
             preprocessor = ColumnTransformer([
                 ('one_hot_transformer', one_hot_pipeline, ONE_HOT_COLUMNS)
-            ], remainder='passthrough')
+            ], remainder=standard_pipeline)
 
             # Create the final pipeline
-            pipeline = Pipeline(steps=[('preprocessor', preprocessor), ('standard', standard_pipeline)])
+            pipeline = Pipeline(steps=[('preprocessor', preprocessor)])
             
             return pipeline
         except Exception as e:
@@ -134,7 +132,7 @@ class DataTransformation:
                                         array=test_arr)
 
             utils.save_object(file_path=self.data_transformation_config.transform_object_path,
-             obj=transformation_pipleine)
+            obj=transformation_pipleine)
 
             data_transformation_artifact = artifact_entity.DataTransformationArtifact(
                 transform_object_path=self.data_transformation_config.transform_object_path,

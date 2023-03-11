@@ -5,4 +5,5 @@ python-dotenv
 PyYAML
 dill
 scikit-learn
+lightgbm
 -e .

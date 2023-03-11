@@ -69,7 +69,7 @@ class ModelTrainer:
             logging.info(f"Prepare the artifact")
             model_trainer_artifact  = artifact_entity.ModelTrainerArtifact(model_path=self.model_trainer_config.model_path, 
             r2_train_score=r2_train_score, r2_test_score=r2_test_score)
-            logging.info(f"Model trainer artifact: {model_trainer_artifact}")
+            logging.info(f"Model trainer artifact generated")
             return model_trainer_artifact
         except Exception as e:
             raise BikeException(e, sys)
