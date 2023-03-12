@@ -131,4 +131,5 @@ dmypy.json
 artifact
 logs
 Bike Share Prediction.csv
+bike_sharing.csv
 demo.ipynb

@@ -6,4 +6,5 @@ PyYAML
 dill
 scikit-learn
 lightgbm
+streamlit
 -e .
