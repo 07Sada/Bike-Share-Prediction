@@ -1,6 +1,6 @@
-# neurolab-mongo-python
+# Bike Share Demand Prediction
 
-![image](https://user-images.githubusercontent.com/57321948/196933065-4b16c235-f3b9-4391-9cfe-4affcec87c35.png)
+![Screenshot 2023-03-12 205813](https://user-images.githubusercontent.com/112761379/224610955-cd655493-7654-495a-9e65-3195a83670dd.png)
 
 ### Step 1 - Install the requirements
 
@@ -13,3 +13,4 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
