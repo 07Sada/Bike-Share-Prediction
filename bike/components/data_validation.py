@@ -25,28 +25,6 @@ class DataValidation:
         except Exception as e:
             raise BikeException(e, sys)
 
-    def drop_unwanted_columns(self, df:pd.DataFrame, report_key_name:str)->Optional[pd.DataFrame]:
-        """
-        This function will drop unwanted columns from dataset
-        
-        df: pandas dataframe
-        ============================================================================================
-        return pandas dataframe
-        """
-        try:
-            df = df.drop(columns=UNWANTED_COLUMNS, axis=1)
-            # logging.info(f"Unwanted columns dropped, remaining columns: {df.columns.to_list()}")
-            
-            self.validation_error[report_key_name]=UNWANTED_COLUMNS
-            
-            # return none if no column left
-            if len(df.columns) == 0:
-                return None
-            return df 
-        
-        except Exception as e:
-            raise BikeException(e, sys)
-
     def drop_missing_values(self, df:pd.DataFrame, report_key_name:str)->Optional[pd.DataFrame]:
         """
         This function will drop columns which contains missing value more than specified threshold
@@ -150,11 +128,6 @@ class DataValidation:
             train_df = pd.read_csv(self.data_ingestion_artifact.train_file_path)
             logging.info(f"Reading the test dataframe")
             test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
-
-            logging.info(f"Dropping unwanted columns from train df")
-            train_df = self.drop_unwanted_columns(df=train_df, report_key_name="dropping unwanted columns from train df")
-            logging.info(f"Dropping unwanted columns from test df")
-            test_df = self.drop_unwanted_columns(df=test_df, report_key_name="dropping unwanted columns from train df")
 
             logging.info(f"Drop null values column train df")
             train_df = self.drop_missing_values(df=train_df, report_key_name="missing_values_within_train_dataset")

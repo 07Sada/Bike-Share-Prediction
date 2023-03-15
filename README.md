@@ -1,6 +1,6 @@
 # neurolab-mongo-python
 
-![image](https://user-images.githubusercontent.com/57321948/196933065-4b16c235-f3b9-4391-9cfe-4affcec87c35.png)
+![image](https://drive.google.com/file/d/1BEg-44bSflETAKOvqy35F4CKZo9-OY10/view?usp=share_link)
 
 ### Step 1 - Install the requirements
 

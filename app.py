@@ -5,8 +5,9 @@ from bike.predictor import ModelResolver
 from bike.utils import load_object
 
 model_resolver = ModelResolver()
-transformer_path = model_resolver.get_latest_transformer_path()
-model_path = model_resolver.get_latest_model_path()
+transformer_path = model_resolver.get_latest_save_transformer_path()
+model_path = model_resolver.get_latest_save_model_path()
+
 
 transformer = load_object(file_path=transformer_path)
 model = load_object(file_path=model_path)
@@ -74,5 +75,5 @@ with col2:
         df.to_csv('input_data.csv', index=False)
         input_arr = transformer.transform(df)
         y_pred = model.predict(input_arr)
-        y_pred_rounded = [round(pred, 2) for pred in y_pred]
-        st.success(f'Demand for the day:  {y_pred_rounded[0]}')
+        y_pred_rounded = [int(pred) for pred in y_pred]
+        st.success(f'Bike Rental Counts for the day:  {y_pred_rounded[0]}')
