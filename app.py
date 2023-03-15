@@ -4,6 +4,7 @@ import numpy as np
 from bike.predictor import ModelResolver
 from bike.utils import load_object
 
+# fetching the model and transformer
 model_resolver = ModelResolver()
 transformer_path = model_resolver.get_latest_save_transformer_path()
 model_path = model_resolver.get_latest_save_model_path()
@@ -76,4 +77,4 @@ with col2:
         input_arr = transformer.transform(df)
         y_pred = model.predict(input_arr)
         y_pred_rounded = [int(pred) for pred in y_pred]
-        st.success(f'Bike Rental Counts for the day:  {y_pred_rounded[0]}')
+        st.success(f'Bike Rental Counts for the day: {y_pred_rounded[0]}')
