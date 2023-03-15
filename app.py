@@ -74,5 +74,5 @@ with col2:
         df.to_csv('input_data.csv', index=False)
         input_arr = transformer.transform(df)
         y_pred = model.predict(input_arr)
-        y_pred_rounded = [round(pred, 2) for pred in y_pred]
-        st.success(f'Demand for the day:  {y_pred_rounded[0]}')
+        y_pred_rounded = [int(pred) for pred in y_pred]
+        st.success(f'Demand for the day: {y_pred_rounded[0]}')
