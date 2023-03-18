@@ -6,8 +6,8 @@ from bike.utils import load_object
 
 # fetching the model and transformer
 model_resolver = ModelResolver()
-transformer_path = model_resolver.get_latest_save_transformer_path()
-model_path = model_resolver.get_latest_save_model_path()
+transformer_path = model_resolver.get_latest_transformer_path()
+model_path = model_resolver.get_latest_model_path()
 
 
 transformer = load_object(file_path=transformer_path)
